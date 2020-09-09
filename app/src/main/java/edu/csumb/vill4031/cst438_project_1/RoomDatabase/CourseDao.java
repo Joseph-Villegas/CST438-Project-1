@@ -12,7 +12,7 @@ import androidx.room.Update;
 @Dao
 public interface CourseDao {
     @Insert
-    void insert(Course course);
+    void insertCourse(Course course);
 
     @Update
     void update(Course course);
@@ -20,9 +20,9 @@ public interface CourseDao {
     @Delete
     void delete(Course course);
 
-    @Query("delete from course_table")
+    @Query(" DELETE FROM " + CourseDatabase.COURSE_TABLE)
     void deleteAllCourses();
 
-    @Query("select * from course_table")
-    LiveData<List<User>> getAllCourses();
+    @Query("SELECT * FROM " + CourseDatabase.COURSE_TABLE)
+    LiveData<List<Course>> getAllCourses();
 }
