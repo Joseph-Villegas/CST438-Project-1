@@ -1,19 +1,13 @@
 package edu.csumb.vill4031.cst438_project_1.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LiveData;
-import androidx.room.Database;
 import androidx.room.Room;
 
-import edu.csumb.vill4031.cst438_project_1.DataBinding.Listener;
 import edu.csumb.vill4031.cst438_project_1.R;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.User;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDao;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDatabase;
-import edu.csumb.vill4031.cst438_project_1.ViewModel.UserViewModel;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -75,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
+            }
+        });
+
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddUserActivity.class);
+                startActivity(intent);
             }
         });
     }
