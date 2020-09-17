@@ -54,6 +54,13 @@ public class LandingPage extends AppCompatActivity {
         // TODO: initialize userInfo button
 
         // TODO: initialize courses button
+        courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPage.this, AddCourse.class);
+                startActivity(intent);
+            }
+        });
 
         //initialize logout button
         logout.setOnClickListener(new View.OnClickListener() {
