@@ -9,4 +9,5 @@
     <string name="button_landingPage_courses">Courses</string>
     <string name="button_landingPage_logout">Log Out</string>
     <string name="button_createAccount">Create Account</string>
+    <string name="button_add_course">Add Course</string>
 </resources>

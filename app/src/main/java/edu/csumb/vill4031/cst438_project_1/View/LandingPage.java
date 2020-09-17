@@ -52,8 +52,22 @@ public class LandingPage extends AppCompatActivity {
         logout = findViewById(R.id.button_landingPage_logout);
 
         // TODO: initialize userInfo button
+        userInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = UserInfo.intentFactory(getApplicationContext(), user.getUser_id());
+                startActivity(intent);
+            }
+        });
 
-        // TODO: initialize courses button
+        //initialize courses button
+        courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = Courses.intentFactory(getApplicationContext(), user.getUser_id());
+//                startActivity(intent);
+            }
+        });
 
         //initialize logout button
         logout.setOnClickListener(new View.OnClickListener() {

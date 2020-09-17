@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".View.EditUser"></activity>
+        <activity android:name=".View.UserInfo" />
         <activity android:name=".View.LandingPage" />
+        <activity android:name=".View.AddUserActivity" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
