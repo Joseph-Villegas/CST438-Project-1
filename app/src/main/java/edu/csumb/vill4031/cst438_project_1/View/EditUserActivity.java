@@ -1,5 +1,6 @@
 package edu.csumb.vill4031.cst438_project_1.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,17 +20,15 @@ public class EditUserActivity extends AppCompatActivity {
             "edu.csumb.vill4031.cst438_project_1.USERNAME";
     private static final String USER_ID_KEY = "edu.csumb.vill4031.cst438_project_1.userIDKey";
     private static final String PREFERENCES_KEY = "edu.csumb.vill4031.cst438_project_1.PREFERENCES_KEY";
-    private int UserID = -1;
+    private static int UserID = -1;
 
     EditText username;
     EditText password;
     EditText first_name;
     EditText last_name;
-
     Button update_account;
 
     private UserDao userDao;
-
     private User user;
 
     @Override
@@ -45,22 +44,24 @@ public class EditUserActivity extends AppCompatActivity {
         last_name = findViewById(R.id.edit_text_last_name);
         update_account = findViewById(R.id.button_update_account);
 
-        Intent intent = getIntent();
+        user = userDao.getAccountById(UserID);
 
-        if (intent.hasExtra(USERNAME)) {
-            user = userDao.getAccountByUsername(intent.getStringExtra(USERNAME));
-            if (user == null) {
-                Toast.makeText(EditUserActivity.this, "No user found!", Toast.LENGTH_SHORT).show();
-                intent = new Intent(EditUserActivity.this, MainActivity.class);
-                startActivity(intent);
-                return;
-            }
-        } else {
-            Toast.makeText(EditUserActivity.this, "No user found!", Toast.LENGTH_SHORT).show();
-            intent = new Intent(EditUserActivity.this, MainActivity.class);
-            startActivity(intent);
-            return;
-        }
+//        Intent intent = getIntent();
+
+//        if (intent.hasExtra(USERNAME)) {
+//
+//            if (user == null) {
+//                Toast.makeText(EditUserActivity.this, "No user found!", Toast.LENGTH_SHORT).show();
+//                intent = new Intent(EditUserActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                return;
+//            }
+//        } else {
+//            Toast.makeText(EditUserActivity.this, "No user found!", Toast.LENGTH_SHORT).show();
+//            intent = new Intent(EditUserActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            return;
+//        }
 
         username.setText(user.getUsername());
         password.setText(user.getPassword());
@@ -70,17 +71,17 @@ public class EditUserActivity extends AppCompatActivity {
         update_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!user.getUsername().equals(username.toString().trim())) {
-                    user.setUsername(username.toString().trim());
+                if (!user.getUsername().equals(username.getText().toString())) {
+                    user.setUsername(username.getText().toString());
                 }
-                if (!user.getPassword().equals(password.toString().trim())) {
-                    user.setPassword(password.toString().trim());
+                if (!user.getPassword().equals(password.getText().toString())) {
+                    user.setPassword(password.getText().toString());
                 }
-                if (!user.getFirst_name().equals(first_name.toString().trim())) {
-                    user.setFirst_name(first_name.toString().trim());
+                if (!user.getFirst_name().equals(first_name.getText().toString())) {
+                    user.setFirst_name(first_name.getText().toString());
                 }
-                if (!user.getLast_name().equals(last_name.toString().trim())) {
-                    user.setLast_name(last_name.toString().trim());
+                if (!user.getLast_name().equals(last_name.getText().toString())) {
+                    user.setLast_name(last_name.getText().toString());
                 }
 
                 userDao.update(user);
@@ -93,11 +94,20 @@ public class EditUserActivity extends AppCompatActivity {
         });
     }
 
+    //method for setting up database
     private void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .userDao();
+    }
+
+    //method for switching to this activity
+    public static Intent intentFactory(Context context, int user_id) {
+        UserID = user_id;
+        Intent intent = new Intent(context, EditUserActivity.class);
+        return intent;
     }
 
 

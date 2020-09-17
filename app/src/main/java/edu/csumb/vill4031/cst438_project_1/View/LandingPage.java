@@ -32,8 +32,8 @@ public class LandingPage extends AppCompatActivity {
     Button logout;
 
     private UserDao userDao;
-    private String name;
     private User user;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class LandingPage extends AppCompatActivity {
         courses = findViewById(R.id.button_landingPage_courses);
         logout = findViewById(R.id.button_landingPage_logout);
 
-        // TODO: initialize userInfo button
+        //initialize userInfo button
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,16 +78,16 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        userInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LandingPage.this, EditUserActivity.class);
-                User user = userDao.getAccountById(UserID);
-                intent.putExtra(EditUserActivity.USERNAME, user.getUsername());
-                startActivity(intent);
-                return;
-            }
-        });
+//        userInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LandingPage.this, EditUserActivity.class);
+//                User user = userDao.getAccountById(UserID);
+//                intent.putExtra(EditUserActivity.USERNAME, user.getUsername());
+//                startActivity(intent);
+//                return;
+//            }
+//        });
     }
 
     private boolean getName() {
