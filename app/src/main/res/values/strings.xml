@@ -11,4 +11,12 @@
     <string name="button_createAccount">Create Account</string>
     <string name="button_add_course">Add Course</string>
     <string name="edit_user">Edit User</string>
+    <string name="add_course">Add course</string>
+    <string name="instructor">Instructor</string>
+    <string name="end_date">End date</string>
+    <string name="course_id">Course ID</string>
+    <string name="start_date">Start date</string>
+    <string name="description">Description</string>
+    <string name="add">ADD</string>
+    <string name="title">Title</string>
 </resources>

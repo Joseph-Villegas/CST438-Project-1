@@ -64,8 +64,8 @@ public class LandingPage extends AppCompatActivity {
         courses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = Courses.intentFactory(getApplicationContext(), user.getUser_id());
-//                startActivity(intent);
+                Intent intent = new Intent(LandingPage.this, AddCourse.class);
+                startActivity(intent);
             }
         });
 
