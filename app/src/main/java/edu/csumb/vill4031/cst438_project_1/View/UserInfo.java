@@ -1,6 +1,8 @@
 package edu.csumb.vill4031.cst438_project_1.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -9,11 +11,13 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import edu.csumb.vill4031.cst438_project_1.R;
+import edu.csumb.vill4031.cst438_project_1.RecyclerView.Adapter;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.User;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDao;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDatabase;
@@ -27,7 +31,12 @@ public class UserInfo extends AppCompatActivity {
     private UserDao userDao;
     private User user;
 
+    TextView username;
+    TextView firstName;
+    TextView lastName;
     Button editUser;
+    Button viewCourses;
+    Button viewAssignments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +46,15 @@ public class UserInfo extends AppCompatActivity {
         wireUpDisplay();
         getDatabase();
         getName();
-
+        setValues();
     }
 
     private void wireUpDisplay() {
+        username = findViewById(R.id.userInfo_userName);
+        firstName = findViewById(R.id.userInfo_firstName);
+        lastName = findViewById(R.id.userInfo_lastName);
         editUser = findViewById(R.id.button_userInfo_editUser);
-        //viewCourses = findViewById(R.id.button_landingPage_courses);
+        viewCourses = findViewById(R.id.button_userInfo_viewCourses);
         //viewAssignments = findViewById(R.id.button_landingPage_logout);
 
         //initialize editUser button
@@ -54,6 +66,21 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
+        //initialize viewCourses button
+        viewCourses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ViewCourses.intentFactory(getApplicationContext(), getUserID());
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    public void setValues() {
+        username.setText("Username: " + user.getUsername());
+        firstName.setText("First Name: " + user.getFirst_name());
+        lastName.setText("Last Name: " + user.getLast_name());
     }
 
     private int getUserID() {

@@ -16,13 +16,12 @@ public class Course {
     private String start_date;
     private String end_date;
 
-    public Course(String instructor, String title, String description, String start_date, String end_date, int course_id) {
+    public Course(String instructor, String title, String description, String start_date, String end_date) {
         this.instructor = instructor;
         this.title = title;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.course_id = course_id;
     }
 
     public Course() {
@@ -31,7 +30,6 @@ public class Course {
         this.description = "test course";
         this.start_date = "0";
         this.end_date = "1";
-       // this.course_id = 0;
     }
 
     public void setCourse_id(int course_id) {

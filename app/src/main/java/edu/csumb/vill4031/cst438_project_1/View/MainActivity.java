@@ -1,11 +1,14 @@
 package edu.csumb.vill4031.cst438_project_1.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
 import edu.csumb.vill4031.cst438_project_1.R;
+import edu.csumb.vill4031.cst438_project_1.RecyclerView.Adapter;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.User;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDao;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDatabase;
@@ -23,10 +26,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
 
     static ArrayList<User> Users = new ArrayList<User>();
+    private UserViewModel userViewModel;
     private static final String USER_ID_KEY = "edu.csumb.vill4031.cst438_project_1.userIDKey";
     private static final String PREFERENCES_KEY = "edu.csumb.vill4031.cst438_project_1.PREFERENCES_KEY";
     private int UserID = -1;

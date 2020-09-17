@@ -20,9 +20,12 @@ public interface CourseDao {
     @Delete
     void delete(Course course);
 
+    @Query("SELECT * FROM " + CourseDatabase.COURSE_TABLE + " WHERE title = :title")
+    Course getCourseByTitle(String title);
+
     @Query(" DELETE FROM " + CourseDatabase.COURSE_TABLE)
     void deleteAllCourses();
 
     @Query("SELECT * FROM " + CourseDatabase.COURSE_TABLE)
-    LiveData<List<Course>> getAllCourses();
+    List<Course> getAllCourses();
 }

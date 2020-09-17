@@ -15,8 +15,8 @@ import edu.csumb.vill4031.cst438_project_1.RoomDatabase.CourseDatabase;
 
 public class CourseRepository {
     private CourseDao courseDao;
-    private LiveData<List<Course>> allCourses;
-    //private List<User> allUsers;
+    //private LiveData<List<Course>> allCourses;
+    private List<Course> allCourses;
 
     public CourseRepository(Application application) {
         CourseDatabase db = CourseDatabase.getInstance(application);
@@ -41,7 +41,7 @@ public class CourseRepository {
         new CourseRepository.DeleteAllCoursesAsyncTask(courseDao).execute();
     }
 
-    public LiveData<List<Course>> getAllCourses() {
+    public List<Course> getAllCourses() {
         return allCourses;
     }
 

@@ -19,4 +19,11 @@
     <string name="description">Description</string>
     <string name="add">ADD</string>
     <string name="title">Title</string>
+    <string name="view_courses">View Courses</string>
+    <string name="view_assignments">View Assignments</string>
+    <string name="recycler_textview_title">Title</string>
+    <string name="recycler_textview_instructor">Instructor</string>
+    <string name="recycler_textview_courseId">Course ID</string>
+
+
 </resources>
