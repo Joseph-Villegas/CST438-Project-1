@@ -1,12 +1,15 @@
 package edu.csumb.vill4031.cst438_project_1.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
 import edu.csumb.vill4031.cst438_project_1.R;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.User;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDao;
 import edu.csumb.vill4031.cst438_project_1.RoomDatabase.UserDatabase;
+import edu.csumb.vill4031.cst438_project_1.ViewModel.UserViewModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -46,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         wireUpDisplay();
         getDatabase();
         checkForUser();
-
-
     }
 
     private void wireUpDisplay() {

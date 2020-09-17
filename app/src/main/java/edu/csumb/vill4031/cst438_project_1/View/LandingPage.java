@@ -77,6 +77,17 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        userInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPage.this, EditUserActivity.class);
+                User user = userDao.getAccountById(UserID);
+                intent.putExtra(EditUserActivity.USERNAME, user.getUsername());
+                startActivity(intent);
+                return;
+            }
+        });
     }
 
     private boolean getName() {

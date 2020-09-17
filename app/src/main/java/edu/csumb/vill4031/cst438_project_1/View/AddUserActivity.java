@@ -61,7 +61,6 @@ public class AddUserActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(AddUserActivity.this, "Account with selected username already exists", Toast.LENGTH_LONG).show();
-
             }
         });
     }
@@ -73,7 +72,6 @@ public class AddUserActivity extends AppCompatActivity {
     private void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
                 .build()
                 .userDao();
     }
