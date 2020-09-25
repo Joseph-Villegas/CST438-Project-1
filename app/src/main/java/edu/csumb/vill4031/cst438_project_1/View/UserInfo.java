@@ -49,6 +49,9 @@ public class UserInfo extends AppCompatActivity {
         setValues();
     }
 
+    /**
+     * This method connects all buttons, TextViews, etc. to the activity and sets up click listeners
+     */
     private void wireUpDisplay() {
         username = findViewById(R.id.userInfo_userName);
         firstName = findViewById(R.id.userInfo_firstName);
@@ -77,21 +80,35 @@ public class UserInfo extends AppCompatActivity {
 
     }
 
+    /**
+     * This method sets the values of the username, firstname, and lastname TextViews depending
+     * on the user's info
+     */
     public void setValues() {
         username.setText("Username: " + user.getUsername());
         firstName.setText("First Name: " + user.getFirst_name());
         lastName.setText("Last Name: " + user.getLast_name());
     }
 
+    /**
+     * This method retrieves the user's ID
+     * @return userID
+     */
     private int getUserID() {
         return user.getUser_id();
     }
 
+    /**
+     * This method gets a user's name by UserID
+     * @return user This returns user who was retrieved by UserID
+     */
     private User getName() {
         return user = userDao.getAccountById(UserID);
     }
 
-    //method for setting up database
+    /**
+     * This method retrieves the user database
+     */
     public void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -100,14 +117,22 @@ public class UserInfo extends AppCompatActivity {
                 .userDao();
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @param user_id the user ID to pass to the next context
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context, int user_id) {
         UserID = user_id;
         Intent intent = new Intent(context, UserInfo.class);
         return intent;
     }
 
-    //method used for creating toast messages
+    /**
+     * This method creates toast messages
+     * @param message the message to be made into a toast
+     */
     public void toaster(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 64);

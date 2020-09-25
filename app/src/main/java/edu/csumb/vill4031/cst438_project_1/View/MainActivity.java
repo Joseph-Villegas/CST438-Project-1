@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         checkForUser();
     }
 
+    /**
+     * This method connects all buttons, TextViews, etc. to the activity and sets up click listeners
+     */
     private void wireUpDisplay() {
         usernameField = findViewById(R.id.login_username);
         passwordField = findViewById(R.id.login_password);
@@ -87,12 +90,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method retrieves the user's input values from the username and password fields
+     */
     private void getValuesFromDisplay() {
         usernameString = usernameField.getText().toString();
         passwordString = passwordField.getText().toString();
     }
 
-    //method for setting up database
+
+    /**
+     * This method retrieves the user database
+     */
     public void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -101,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 .userDao();
     }
 
+    /**
+     * This method checks for a user in the intent, and creates a default user if one doesn't exist
+     */
     private void checkForUser() {
         //do we have a user in the intent?
         UserID = getIntent().getIntExtra(USER_ID_KEY, -1);
@@ -125,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks if the username the user is trying to login with exists in the database
+     * @return false if user doesn't exist, otherwise true
+     */
     private boolean checkForUserInDatabase() {
         user = userDao.getAccountByUsername(usernameString);
         if (user == null) {
@@ -134,17 +150,28 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This method checks if the user entered the correct password
+     * @return boolean of whether the actual password matches what the user entered
+     */
     private boolean validatePassword() {
         return user.getPassword().equals(passwordString);
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
     }
 
-    //method used for creating toast messages
+    /**
+     * This method creates toast messages
+     * @param message the message to be made into a toast
+     */
     public void toaster(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 64);

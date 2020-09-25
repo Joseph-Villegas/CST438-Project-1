@@ -45,6 +45,9 @@ public class LandingPage extends AppCompatActivity {
         getName();
     }
 
+    /**
+     * This method connects all buttons, TextViews, etc. to the activity and sets up click listeners
+     */
     private void wireUpDisplay() {
         welcomeMessage = findViewById(R.id.textview_landingPage_welcomeText);
         userInfo = findViewById(R.id.button_landingPage_userInfo);
@@ -90,6 +93,10 @@ public class LandingPage extends AppCompatActivity {
 //        });
     }
 
+    /**
+     * This method gets a user's name by UserID
+     * @return user This returns user who was retrieved by UserID
+     */
     private boolean getName() {
         user = userDao.getAccountById(UserID);
         if (user == null) {
@@ -102,7 +109,9 @@ public class LandingPage extends AppCompatActivity {
         }
     }
 
-    //method for setting up database
+    /**
+     * This method retrieves the user database
+     */
     public void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -111,14 +120,22 @@ public class LandingPage extends AppCompatActivity {
                 .userDao();
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @param user_id the user ID to pass to the next context
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context, int user_id) {
         UserID = user_id;
         Intent intent = new Intent(context, LandingPage.class);
         return intent;
     }
 
-    //method used for creating toast messages
+    /**
+     * This method creates toast messages
+     * @param message the message to be made into a toast
+     */
     public void toaster(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 64);

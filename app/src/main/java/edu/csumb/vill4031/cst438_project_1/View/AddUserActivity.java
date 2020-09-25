@@ -65,10 +65,21 @@ public class AddUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method checks if all fields are empty and returns false if none are
+     * @param username the first parameter to check if empty
+     * @param password the second parameter to check if empty
+     * @param first_name the third parameter to check if empty
+     * @param last_name the fourth parameter to check if empty
+     * @return param.isEmpty() if any field is empty, return true
+     */
     private boolean fieldsAreEmpty(String username, String password, String first_name, String last_name) {
         return (username.isEmpty() || password.isEmpty() || first_name.isEmpty() || last_name.isEmpty());
     }
 
+    /**
+     * This method retrieves the user database
+     */
     private void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()

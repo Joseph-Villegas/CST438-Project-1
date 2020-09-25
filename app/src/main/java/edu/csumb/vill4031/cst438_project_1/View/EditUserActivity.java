@@ -94,7 +94,9 @@ public class EditUserActivity extends AppCompatActivity {
         });
     }
 
-    //method for setting up database
+    /**
+     * This method retrieves the user database
+     */
     private void getDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -103,7 +105,12 @@ public class EditUserActivity extends AppCompatActivity {
                 .userDao();
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @param user_id the user ID to pass to the next context
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context, int user_id) {
         UserID = user_id;
         Intent intent = new Intent(context, EditUserActivity.class);

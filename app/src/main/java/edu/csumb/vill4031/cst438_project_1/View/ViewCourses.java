@@ -51,6 +51,9 @@ public class ViewCourses extends AppCompatActivity {
         getTitle();
     }
 
+    /**
+     * This method connects all buttons, TextViews, etc. to the activity and sets up click listeners
+     */
     private void wireUpDisplay() {
         recyclerView = findViewById(R.id.recycler_courses);
 
@@ -89,7 +92,9 @@ public class ViewCourses extends AppCompatActivity {
 //        return course = courseDao.getCourseByTitle(courseTitle);
 //    }
 
-    //method for setting up database
+    /**
+     * This method retrieves the course database
+     */
     public void getDatabase() {
         courseDao = Room.databaseBuilder(this, CourseDatabase.class, CourseDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -98,14 +103,22 @@ public class ViewCourses extends AppCompatActivity {
                 .courseDao();
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @param user_id the user ID to pass to the next context
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context, int user_id) {
         UserID = user_id;
         Intent intent = new Intent(context, ViewCourses.class);
         return intent;
     }
 
-    //method used for creating toast messages
+    /**
+     * This method creates toast messages
+     * @param message the message to be made into a toast
+     */
     public void toaster(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 64);

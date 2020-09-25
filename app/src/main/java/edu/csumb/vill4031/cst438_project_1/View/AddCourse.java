@@ -58,6 +58,9 @@ public class AddCourse extends AppCompatActivity {
 
     }
 
+    /**
+     * This method connects all buttons, TextViews, etc. to the activity and sets up click listeners
+     */
     public void wireUpDisplay() {
         instructor = findViewById(R.id.addInstructor);
         title = findViewById(R.id.addTitle);
@@ -97,6 +100,9 @@ public class AddCourse extends AppCompatActivity {
     }
 
 
+    /**
+     * This method adds all fields to the course list
+     */
     public void addFieldsToLists() {
         ViewCourses.addInstructor(instructor.getText().toString());
         ViewCourses.addTitle(title.getText().toString());
@@ -106,16 +112,23 @@ public class AddCourse extends AppCompatActivity {
     }
 
 
-
-
-
-
+    /**
+     * This method checks if all fields are empty and returns false if none are
+     * @param instructor the first parameter to check if empty
+     * @param title the second parameter to check if empty
+     * @param description the third parameter to check if empty
+     * @param end_date the fourth parameter to check if empty
+     * @param start_date the fifth parameter to check if empty
+     * @return param.isEmpty() if any field is empty, return true
+     */
     private boolean emptyFields(String instructor, String title, String description, String end_date, String start_date) {
         return (instructor.isEmpty() || title.isEmpty() || description.isEmpty() || end_date.isEmpty() || start_date.isEmpty());
     }
 
 
-    //method for setting up user database
+    /**
+     * This method retrieves the user database
+     */
     public void getUserDatabase() {
         userDao = Room.databaseBuilder(this, UserDatabase.class, UserDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -124,7 +137,9 @@ public class AddCourse extends AppCompatActivity {
                 .userDao();
     }
 
-    //method for setting up course database
+    /**
+     * This method retrieves the course database
+     */
     private void getCourseDatabase() {
         courseDao = Room.databaseBuilder(this, CourseDatabase.class, CourseDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -133,18 +148,30 @@ public class AddCourse extends AppCompatActivity {
                 .courseDao();
     }
 
+    /**
+     * This method gets a user's name by UserID
+     * @return user This returns user who was retrieved by UserID
+     */
     private User getName() {
         return user = userDao.getAccountById(UserID);
     }
 
-    //method for switching to this activity
+    /**
+     * This method is used for switching to this intent
+     * @param context the context from which we are switching
+     * @param user_id the user ID to pass to the next context
+     * @return This returns the intent we are moving to
+     */
     public static Intent intentFactory(Context context, int user_id) {
         UserID = user_id;
         Intent intent = new Intent(context, AddCourse.class);
         return intent;
     }
 
-    //method used for creating toast messages
+    /**
+     * This method creates toast messages
+     * @param message the message to be made into a toast
+     */
     public void toaster(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 64);
